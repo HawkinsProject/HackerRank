@@ -1,0 +1,14 @@
+#calculate the average percentage of score
+#enter a name and that students score will be printed
+import math
+if __name__ == '__main__':
+    n = int(input())
+    student_marks = {}
+    for _ in range(n):
+        name, *line = input().split()
+        scores = list(map(float, line))
+        student_marks[name] = scores
+    query_name = input()
+size = len(student_marks[query_name])
+percent = math.fsum(student_marks[query_name])/size
+print("{:.2f}".format(percent))
