@@ -1,0 +1,43 @@
+# hacker rank nested list problem
+# find the student or students with the 2nd lowest grade
+if __name__ == '__main__':
+    # allRecords will store a pair [student name, score] into a list
+    allRecords = []
+    # accepting user input for the number of records
+    size = int(input())
+    for _ in range(size):
+        name = input()
+        score = float(input())
+        single = [name, float(score)]
+        allRecords.append(single)
+
+    # sorting list by score value
+    allRecords.sort(key=lambda x: x[1])
+
+    # store the second last score into a separate list
+    allSecLower = []
+
+    # the program needs to check list for the same score value
+    # so we grab the lowest score at the top of the list
+    highest = allRecords[0][1]
+    allRecords.pop(0)
+    while len(allRecords) != 1:
+        i = 0
+        #while looping through the list we remove duplicates of the lowest score
+        if highest == allRecords[i][1]:
+            allRecords.pop(0)
+            i = i + 1
+        else:
+            break
+    #now the top element in the list would be the second lowest score that we need
+    secLower = allRecords[0][1]
+    allSecLower.append(allRecords[0][0])
+    allRecords.pop(0)
+    #loop through the list with all records to find any more second lowest score values
+    for i in range(len(allRecords)):
+        if secLower == allRecords[i][1]:
+            allSecLower.append(allRecords[i][0])
+    allSecLower.sort()
+    #print all student names with second lowest scores
+    for i in range(len(allSecLower)):
+        print(allSecLower[i])
